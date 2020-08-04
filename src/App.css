@@ -1,38 +1,157 @@
+:root {
+  --cell-size: 80px;
+  --mark-size: calc(var(--cell-size) * 0.7);
+  --bg-color: #282c34;
+}
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: var(--bg-color);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ffffff;
+}
+* {
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+.game{
+  width:50vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.info-text {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #fff;
+}
+
+
+.game-wrapper {
+  display: flex;
+  width:100%;
+  margin: 20px 0;
+  align-items: start;
+  justify-content: space-around;
+}
+
+.board {
+  height: 240px;
+  width: 240px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: solid white 1px;
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.4s;
+}
+
+.x-mark::before,
+.x-mark::after {
+  content: '';
+  width: calc(var(--mark-size) * .15);
+  height: var(--mark-size);
+  background-color: #fff;
+  position: absolute;
+  border-radius: 50px;
+  transform: rotate(45deg);
+}
+.x-mark::after {
+  background-color: #fff;
+  border-radius: 50px;
+  transform: rotate(-45deg);
+}
+
+
+.o-mark::before,
+.o-mark::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.o-mark::before {
+  width: var(--mark-size);
+  height: var(--mark-size);
+  background-color: #fff;
+}
+.o-mark::after {
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+  background-color: var(--bg-color);
+}
+
+span {
+  text-transform: capitalize;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin:0;
+  font-size: 1.5rem;
+}
+
+ul li{
+  cursor: default;
+  padding: 2px;;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.go-back-icon{
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  
+}
+
+.loser-square {
+  opacity: 0.4;
+}
+.square.winning-square::before{
+  color:rgba(25, 82, 121, 0.979);
+}
+.reset-btn{
+  width:240px;
+  border: 1px solid #fff;
+  padding: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .info-text {
+    font-size: 1.6rem;
+    width: 100vw;
   }
-  to {
-    transform: rotate(360deg);
+
+  .game-wrapper {
+    margin: 20px 0;
+    flex-direction: column;
+    align-items: center;
   }
+  .game {
+    width: 100vw;
+    height: 100vh;
+  }
+  ul {
+    margin-top:20px;
+    font-size: 1.3rem;
+  }
+
+
 }
